@@ -1,0 +1,24 @@
+//
+//  PrefixHeader.pch
+//  News
+//
+//  Created by junFung on 15/9/25.
+//  Copyright © 2015年 yc. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "Public.h"
+#import "Define.h"
+#import "UIView+Extension.h"
+#import "BaseViewController.h"
+#import <Masonry.h>
+#import "BaseModel.h"
+#import "NSObject+RunTime.h"
+
+
+#endif /* PrefixHeader_pch */

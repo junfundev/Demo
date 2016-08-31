@@ -1,0 +1,46 @@
+//1. 动态变量控制
+//2. 动态添加方法
+//3. 动态交换两个方法的实现
+//4. 拦截并替换方法
+//5. 在方法上增加额外功能
+//6. 实现NSCoding的自动归档和解档
+//7. 实现字典转模型的自动转换
+
+
+字典转模型
+两种方式：KVC 和 RunTime
+1、KVC:遍历字典中的所有的key，然后取模型中查找有没有对应的属性；
+2、RunTime:遍历模型中的所有的属性名，去字典中查找。
+
+模型里面保存的是我们使用的属性、使用RunTime就可以解决这个问题、
+
+
+1、成员变量（成员属性） 和 属性 的区别
+{
+  int _age; // 这个_age 是成员变量（成员属性）
+}
+@property (nonatomic, assign)int age; // 这个 age 是属性
+
+注释：成员属性和属性不是同一个概念,成员属性名都是带 下划线_ 的；
+@property 的本质是什么？
+@property = ivar + getter + setter;
+下面解释下：
+“属性” (property)有两大概念：ivar（实例变量）、存取方法（access method ＝ getter + setter）。
+“属性” (property)作为 Objective-C 的一项特性，主要的作用就在于封装对象中的数据。 Objective-C 对象通常会把其所需要的数据保存为各种实例变量。实例变量一般通过“存取方法”(access method)来访问。其中，“获取方法” (getter)用于读取变量值，而“设置方法” (setter)用于写入变量值。这个概念已经定型，并且经由“属性”这一特性而成为Objective-C 2.0的一部分。 而在正规的 Objective-C 编码风格中，存取方法有着严格的命名规范。 正因为有了这种严格的命名规范，所以 Objective-C 这门语言才能根据名称自动创建出存取方法。其实也可以把属性当做一种关键字，其表示:
+编译器会自动写出一套存取方法，用以访问给定类型中具有给定名称的变量。 所以你也可以这么说：
+@property = getter + setter;
+
+Example:
+@interface Person : NSObject
+@property NSString *firstName;
+@property NSString *lastName;
+@end
+上述代码写出来的类与下面这种写法等效：
+
+@interface Person : NSObject
+- (NSString *)firstName;
+- (void)setFirstName:(NSString *)firstName;
+- (NSString *)lastName;
+- (void)setLastName:(NSString *)lastName;
+@end
+
